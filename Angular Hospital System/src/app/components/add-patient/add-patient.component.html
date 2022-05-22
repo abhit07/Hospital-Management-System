@@ -1,0 +1,43 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            required
+            [(ngModel)]="patient.name"
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="visitedDoctor">Visited Doctor</label>
+          <input
+            class="form-control"
+            id="visitedDoctor"
+            required
+            [(ngModel)]="patient.visitedDoctor"
+            name="visitedDoctor"
+          />
+        </div>
+        <div class="form-group">
+            <label for="dateOfVisit">Date of Visit</label>
+            <input
+            type="text"
+            class="form-control"
+            id="dateOfVisit"
+            required
+            [(ngModel)]="patient.dateOfVisit"
+            name="dateOfVisit"
+            />
+        </div>
+        <button (click)="savePatient()" class="btn btn-success">Submit</button>
+      </div>
+      <div *ngIf="submitted">
+        <h4>Patient was added successfully!</h4>
+        <button class="btn btn-success" (click)="newPatient()">Add More</button>
+      </div>
+    </div>
+  </div>

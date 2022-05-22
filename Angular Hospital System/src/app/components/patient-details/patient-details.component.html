@@ -1,0 +1,72 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentPatient.id">
+      <h4>Doctor</h4>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentPatient.name }}
+      </div>
+      <div>
+        <label><strong>Visited Doctor:</strong></label>
+        {{ currentPatient.visitedDoctor}}
+      </div>
+      <div>
+        <label><strong>Date of Visited:</strong></label>
+        {{ currentPatient.dateOfVisit}}
+      </div>
+      <a
+        class="badge badge-warning"
+        routerLink="/patients/{{ currentPatient.id }}"
+      >
+        Edit
+      </a>
+    </div>
+    <div *ngIf="!currentPatient">
+      <br />
+      <p>Please click on a Patient..</p>
+    </div>
+  </div>
+  <ng-template #editable>
+    <div *ngIf="currentPatient.id" class="edit-form">
+      <h4>Doctor</h4>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            [(ngModel)]="currentPatient.name"
+            name="name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="visited">Visited Doctor</label>
+          <input
+            type="text"
+            class="form-control"
+            id="visited"
+            [(ngModel)]="currentPatient.visitedDoctor"
+            name="visited"
+          />
+        </div>
+        <div class="form-group">
+          <label><strong>Date of Visit:</strong></label>
+          {{ currentPatient.dateOfVisit }}
+        </div>
+      </form>
+      <button class="badge badge-danger mr-2" (click)="deletePatient()">
+        Delete
+      </button>
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updatePatient()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+    <div *ngIf="!currentPatient.id">
+      <br />
+      <p>Cannot access this Patient...</p>
+    </div>
+  </ng-template>

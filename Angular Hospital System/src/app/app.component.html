@@ -1,0 +1,22 @@
+<div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Hospital Management System</a>
+    <div class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="doctors" class="nav-link">Doctors</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="patients" class="nav-link">Patients</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add/doctor" class="nav-link">Add Doctor</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="add/patient" class="nav-link">Add Patient</a>
+      </li>
+    </div>
+  </nav>
+  <div class="container mt-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>
