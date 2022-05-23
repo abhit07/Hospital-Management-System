@@ -1,6 +1,6 @@
 <div *ngIf="viewMode; else editable">
     <div *ngIf="currentPatient.id">
-      <h4>Doctor</h4>
+      <h4>Patient</h4>
       <div>
         <label><strong>Name:</strong></label> {{ currentPatient.name }}
       </div>
@@ -11,6 +11,11 @@
       <div>
         <label><strong>Date of Visited:</strong></label>
         {{ currentPatient.dateOfVisit}}
+      </div>
+      <div>
+        <label><strong>Doctor's Prescription:</strong></label>
+        <i> Paracetamol 100mg</i><br>
+        <i>1 tab 3x per day for seven days</i>
       </div>
       <a
         class="badge badge-warning"

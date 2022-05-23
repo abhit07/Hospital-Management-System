@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Doctor } from 'src/app/models/doctor.model';
 import { Patient } from 'src/app/models/patient.model';
+import { DoctorService } from 'src/app/services/doctor.service';
 import { PatientService } from 'src/app/services/patient.service';
 
 @Component({
@@ -8,14 +10,27 @@ import { PatientService } from 'src/app/services/patient.service';
   styleUrls: ['./add-patient.component.css']
 })
 export class AddPatientComponent implements OnInit {
+  doctors?: Doctor[];
   patient: Patient = {
     name: '',
     visitedDoctor: '',
     dateOfVisit: ''
   };
   submitted = false;
-  constructor(private patientService: PatientService) { }
+  constructor(private patientService: PatientService,
+              private doctorService: DoctorService) { }
   ngOnInit(): void {
+    this.retrieveDoctors();
+  }
+  retrieveDoctors(): void {
+    this.doctorService.getAll()
+      .subscribe({
+        next: (data) => {
+          this.doctors = data;
+          console.log(data);
+        },
+        error: (e) => console.error(e)
+      });
   }
   savePatient(): void {
     const data = {

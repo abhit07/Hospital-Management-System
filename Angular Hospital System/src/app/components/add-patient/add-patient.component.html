@@ -14,18 +14,19 @@
         </div>
         <div class="form-group">
           <label for="visitedDoctor">Visited Doctor</label>
-          <input
-            class="form-control"
-            id="visitedDoctor"
-            required
-            [(ngModel)]="patient.visitedDoctor"
-            name="visitedDoctor"
-          />
+          <select class="form-control"
+          id="visitedDoctor"
+          required
+          [(ngModel)]="patient.visitedDoctor"
+          name="visitedDoctor">
+              <option [ngValue]="null" selected disabled>Select Doctor</option>
+              <option *ngFor="let doctor of doctors" value="{{doctor.name}}">{{doctor.name}}</option>
+          </select>
         </div>
         <div class="form-group">
             <label for="dateOfVisit">Date of Visit</label>
             <input
-            type="text"
+            type="date"
             class="form-control"
             id="dateOfVisit"
             required

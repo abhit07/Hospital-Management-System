@@ -26,7 +26,7 @@ public class PatientController {
   @Autowired
   PatientRepository patientRepository;
   @GetMapping("/patients")
-  public ResponseEntity<List<Patient>> getAllTutorials(@RequestParam(required = false) String name) {
+  public ResponseEntity<List<Patient>> getAllPatients(@RequestParam(required = false) String name) {
     try {
       List<Patient> patients = new ArrayList<Patient>();
       if (name == null)
@@ -42,16 +42,16 @@ public class PatientController {
     }
   }
   @GetMapping("/patients/{id}")
-  public ResponseEntity<Patient> getTutorialById(@PathVariable("id") long id) {
-    Optional<Patient> tutorialData = patientRepository.findById(id);
-    if (tutorialData.isPresent()) {
-      return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+  public ResponseEntity<Patient> getPatientById(@PathVariable("id") long id) {
+    Optional<Patient> patientData = patientRepository.findById(id);
+    if (patientData.isPresent()) {
+      return new ResponseEntity<>(patientData.get(), HttpStatus.OK);
     } else {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
   @PostMapping("/patients")
-  public ResponseEntity<Patient> createTutorial(@RequestBody Patient patient) {
+  public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
     try {
       Patient _patient = patientRepository
           .save(new Patient(patient.getId(), patient.getName(),patient.getVisitedDoctor(),patient.getDateOfVisit()));
@@ -61,7 +61,7 @@ public class PatientController {
     }
   }
   @PutMapping("/patients/{id}")
-  public ResponseEntity<Patient> updateTutorial(@PathVariable("id") long id, @RequestBody Patient patient) {
+  public ResponseEntity<Patient> updatePatient(@PathVariable("id") long id, @RequestBody Patient patient) {
     Optional<Patient> patientData = patientRepository.findById(id);
     if (patientData.isPresent()) {
     	Patient _patient = patientData.get();
@@ -74,7 +74,7 @@ public class PatientController {
     }
   }
   @DeleteMapping("/patients/{id}")
-  public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
+  public ResponseEntity<HttpStatus> deletePatient(@PathVariable("id") long id) {
     try {
     	patientRepository.deleteById(id);
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -83,7 +83,7 @@ public class PatientController {
     }
   }
   @DeleteMapping("/patients")
-  public ResponseEntity<HttpStatus> deleteAllTutorials() {
+  public ResponseEntity<HttpStatus> deleteAllPatients() {
     try {
     	patientRepository.deleteAll();
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
